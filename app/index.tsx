@@ -1,12 +1,23 @@
-import { Text, View } from "react-native";
+import Button from "@/components/Button";
+import { Image, Text, View } from "react-native";
+
+import { SafeAreaView } from "react-native-safe-area-context";
 import "./../global.css";
 
 export default function Index() {
   return (
-    <View
-      className="mt-10 flex items-center justify-center"
+    <SafeAreaView
+      className="flex-1 bg-WHITE"
     >
-      <Text className="text-2xl">Edit app/index.tsx to edit this screen.</Text>
-    </View>
+      <View className="flex-1 items-center justify-center ">
+        <Image source={require("./../assets/images/landing.jpg")} className="w-full h-full" />
+      </View>
+      <View className="flex items-center justify-start h-[55%] bg-PRIMARY rounded-t-xl p-10">
+        <Text className="text-center text-2xl text-WHITE pb-2" >Welcome to Course-Tutorial</Text>
+        <Text className="text-center text-sm text-WHITE pb-4">Transform your ideas into engaging learning experiences with AI 🍏 📖</Text>
+        <Button className="w-full capitalize  bg-WHITE py-2 mb-5" textClassName="text-sm">Get Started</Button>
+        <Button className="w-full capitalize bg-PRIMARY border border-WHITE py-2 mb-7" textClassName="text-WHITE text-sm">Already have an account</Button>
+      </View>
+    </SafeAreaView>
   );
 }
