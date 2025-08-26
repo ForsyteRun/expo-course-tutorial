@@ -8,5 +8,5 @@ export default function RootLayout() {
     'Roboto-Italic': require('./../assets/fonts/RobotoCondensed-Italic.ttf')
   });
 
-  return <Stack screenOptions={{ headerShown: false }}></Stack>;
+  return <Stack screenOptions={{ headerShown: false, animation: 'fade' }}></Stack>;
 }
