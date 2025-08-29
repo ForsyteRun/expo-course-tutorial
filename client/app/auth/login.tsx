@@ -2,14 +2,16 @@ import Button from "@/components/Button";
 import AuthButtons from "@/components/authFields/AuthButtons";
 import LoginFields from "@/components/authFields/LoginFields";
 import { ILoginFormData } from "@/types/auth.interface";
+import { useRouter } from "expo-router";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Image, Text, View } from 'react-native';
 
 const Login = () => {
+  const router = useRouter();
   const { handleSubmit, control } = useForm<ILoginFormData>({ mode: 'onChange' });
 
   const onSubmit: SubmitHandler<ILoginFormData> = (data) => {
-    console.log(data);
+    router.push('/(tabs)/home');
   }
 
   return (

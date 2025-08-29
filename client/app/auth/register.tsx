@@ -2,14 +2,16 @@ import Button from "@/components/Button";
 import AuthButtons from "@/components/authFields/AuthButtons";
 import RegisterFields from "@/components/authFields/RegisterFields";
 import { IRegisterFormData } from "@/types/auth.interface";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "expo-router";
+import { useForm } from "react-hook-form";
 import { Image, Text, View } from 'react-native';
 
 const Register = () => {
-  const { handleSubmit, control } = useForm<IRegisterFormData>({ mode: 'onChange' });
+  const router = useRouter();
+  const { control } = useForm<IRegisterFormData>({ mode: 'onChange' });
 
-  const onSubmit: SubmitHandler<IRegisterFormData> = (data) => {
-    console.log(data);
+  const onSubmit = () => {
+    router.push('/(tabs)/home');
   }
 
   return (
@@ -20,7 +22,7 @@ const Register = () => {
       </View>
       <RegisterFields control={control} />
       <AuthButtons variant='register' />
-      <Button onPress={handleSubmit(onSubmit)} className="w-9/12 py-4 ronded bg-PRIMARY" textClassName="text-WHITE">Submit</Button>
+      <Button onPress={onSubmit} className="w-9/12 py-4 ronded bg-PRIMARY" textClassName="text-WHITE">Submit</Button>
     </View >
   )
 }
