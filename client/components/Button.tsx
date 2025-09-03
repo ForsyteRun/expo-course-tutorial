@@ -1,12 +1,12 @@
 import cn from 'clsx'
 import { FC, PropsWithChildren } from 'react'
-import { Pressable, Text } from 'react-native'
+import { ActivityIndicator, Pressable, Text } from 'react-native'
 import { IButton } from './button.interaface'
 
-const Button: FC<PropsWithChildren<IButton>> = ({ children, className, textClassName, ...rest }) => {
+const Button: FC<PropsWithChildren<IButton>> = ({ children, className, textClassName, isLoading, indicatorColor, ...rest }) => {
   return (
-    <Pressable className={cn('rounded', className)} {...rest}>
-      <Text className={cn('text-center', textClassName)}>{children}</Text>
+    <Pressable className={cn('rounded', className)} {...rest} disabled={isLoading}>
+      {isLoading ? <ActivityIndicator color={indicatorColor} /> : <Text className={cn('text-center', textClassName)}>{children}</Text>}
     </Pressable>
   )
 }

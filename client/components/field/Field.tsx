@@ -17,14 +17,14 @@ const FormFields = <T extends FieldValues>({
       rules={rules}
       render={({ field: { onChange, onBlur, value }, fieldState: { error } }) =>
         <View className='relative'>
-          <View className={cn('bg-white, w-full border rounded', error ? 'border-red-500' : 'border-gray-500')}>
+          <View className={cn('bg-white, w-full border rounded', className, error ? 'border-red-500' : 'border-gray-500')}>
             <TextInput
               value={value || ''}
               onChangeText={onChange}
               onBlur={onBlur}
               autoCapitalize='none'
               placeholderTextColor={'#A1A1A1'}
-              className=' text-black text-sm py-3'
+              className='text-black text-sm py-3 rounded-xl'
               {...rest}
             />
           </View>
