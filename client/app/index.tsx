@@ -1,8 +1,8 @@
 import Button from "@/components/Button";
-import { Image, Text, View } from "react-native";
+import { Image, StatusBar, Text, View } from "react-native";
 
 import { useRouter } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import "./../global.css";
 
 export default function Index() {
@@ -15,6 +15,7 @@ export default function Index() {
   return (
     <SafeAreaView
       className="flex-1 bg-WHITE"
+      edges={['top', 'left', 'right', 'bottom']}
     >
       <View className="flex-1 items-center justify-center ">
         <Image source={require("./../assets/images/landing.jpg")} className="w-full h-full" />
@@ -25,6 +26,7 @@ export default function Index() {
         <Button onPress={() => handleAuth('register')} className="w-full capitalize  bg-WHITE py-3  mb-5" textClassName="font-[Roboto-Regular] text-sm">Get Started</Button>
         <Button onPress={() => handleAuth('login')} className="w-full capitalize bg-PRIMARY border border-WHITE py-3 mb-7" textClassName="font-[Roboto-Regular] text-WHITE text-sm">Already have an account</Button>
       </View>
-    </SafeAreaView>
+      <StatusBar barStyle='light-content' />
+    </ SafeAreaView >
   );
 }
