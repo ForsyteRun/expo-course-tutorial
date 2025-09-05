@@ -1,12 +1,11 @@
-import { generateFromGemini } from "@/config/AiModel";
-import React, { useState } from "react";
+import { useGenerateContent } from "@/hooks/useGenerateContent";
+import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 import Button from "../Button";
 import FormFields from "../field/Field";
 import prompt from "./../../constants/prompt";
 import TopicsList from "./TopicsList";
-import { useGenerateContent } from "@/hooks/useGenerateContent";
 
 const LearnTopic = () => {
   const { data: topics, isLoading, handleSelectData } = useGenerateContent();

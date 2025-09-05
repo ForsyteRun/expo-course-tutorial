@@ -1,10 +1,13 @@
 import prompt from "@/constants/prompt";
 import { useGenerateContent } from "@/hooks/useGenerateContent";
+import { StorageEnum } from "@/types/storage.enum";
+import { setItemToStorage } from "@/utils/setItemToStorage";
 import cn from "classnames";
+import { useRouter } from "expo-router";
 import { FC, useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 import Button from "../Button";
-import { useRouter } from "expo-router";
 
 interface TopicsListProps {
   topics: string[];
@@ -32,12 +35,23 @@ const TopicsList: FC<TopicsListProps> = ({ topics }) => {
   };
 
   useEffect(() => {
-    console.log(data);
     if (Object.keys(data).length) {
-      router.push({
-        pathname: "/course",
-        params: { data: JSON.stringify(data) },
-      });
+      const storeData = async () => {
+        try {
+          await setItemToStorage(StorageEnum.COURSES, data);
+
+          router.push("/(tabs)/home");
+        } catch (e) {
+          Toast.show({
+            type: "error",
+            text1: "Ошибка сохранения курса",
+            text2: "Попробуйте снова",
+            position: "top",
+          });
+        }
+      };
+
+      storeData();
     }
   }, [data]);
 
