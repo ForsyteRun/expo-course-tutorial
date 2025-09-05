@@ -2,10 +2,10 @@ export interface ICourse {
   title: string;
   image: string;
   description: string;
-  content: ITopic[];
+  content: IChapters[];
 }
 
-export interface ITopic {
+export interface IChapters {
   title: string;
   content: string[];
 }

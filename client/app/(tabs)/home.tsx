@@ -24,7 +24,7 @@ export default function Home() {
               <Courses courses={courses} />
             </View>
           }
-          renderItem={undefined}
+          renderItem={() => null}
         />
       ) : (
         <NoCourse />
