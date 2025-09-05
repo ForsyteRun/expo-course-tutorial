@@ -8,17 +8,17 @@ export const IMAGES = {
   "7": require("@/assets/images/courses/7.webp"),
 };
 
-export const practiceOptions = [
+export const PRACTICE_OPTIONS = [
   {
     name: "Quiz",
-    value: require("@/assets/images/courses/8.webp"),
+    image: require("@/assets/images/courses/11.jpg"),
   },
   {
     name: "Flashcards",
-    value: require("@/assets/images/courses/9.webp"),
+    image: require("@/assets/images/courses/22.jpg"),
   },
   {
-    name: "Question 7 ans",
-    value: require("@/assets/images/courses/10.webp"),
+    name: "Question & ans",
+    image: require("@/assets/images/courses/33.jpg"),
   },
 ];

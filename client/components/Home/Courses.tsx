@@ -19,9 +19,11 @@ const Courses: FC<ICoursesProps> = ({ courses }) => {
         showsHorizontalScrollIndicator={false}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ item }) => (
-          <View className="flex items-start justify-start gap-3 p-4 bg-BG_GRAY rounded-2xl mr-4">
+          <View
+            style={{ width: screenWidth - 60 }}
+            className="flex items-start justify-start gap-3 p-4 bg-BG_GRAY rounded-2xl mr-4"
+          >
             <Image
-              style={{ width: screenWidth - 60 }}
               source={IMAGES[item.image as keyof typeof IMAGES]}
               className="w-full h-[200px] rounded-lg"
               resizeMode="cover"
