@@ -4,7 +4,6 @@ import { Image, StatusBar, Text, View } from "react-native";
 import { Redirect, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import "./../global.css";
-import { useEffect } from "react";
 
 export default function Index() {
   const router = useRouter();
@@ -13,7 +12,7 @@ export default function Index() {
     router.push(`/auth/${variant}`);
   };
 
-  return <Redirect href="/addCourse" />;
+  // return <Redirect href="/addCourse" />;
   return (
     <SafeAreaView
       className="flex-1 "

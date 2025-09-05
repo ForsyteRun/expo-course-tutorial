@@ -1,8 +1,16 @@
 import { IMAGES } from "@/constants/images";
 import type { ICourse } from "@/types/course.interface";
 import Feather from "@expo/vector-icons/Feather";
+import { useRouter } from "expo-router";
 import { FC } from "react";
-import { Dimensions, FlatList, Image, Text, View } from "react-native";
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  Pressable,
+  Text,
+  View,
+} from "react-native";
 interface ICoursesProps {
   courses: ICourse[];
 }
@@ -10,8 +18,17 @@ interface ICoursesProps {
 const Courses: FC<ICoursesProps> = ({ courses }) => {
   const screenWidth = Dimensions.get("window").width;
 
+  const router = useRouter();
+
+  const handlePress = (course: ICourse) => {
+    router.push({
+      pathname: "/course",
+      params: { course: JSON.stringify(course) },
+    });
+  };
+
   return (
-    <View className="px-4">
+    <View className="p-4">
       <Text className="text-2xl font-[Roboto-Black] mb-5">Courses</Text>
       <FlatList
         data={courses}
@@ -19,7 +36,8 @@ const Courses: FC<ICoursesProps> = ({ courses }) => {
         showsHorizontalScrollIndicator={false}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ item }) => (
-          <View
+          <Pressable
+            onPress={() => handlePress(item)}
             style={{ width: screenWidth - 60 }}
             className="flex items-start justify-start gap-3 p-4 bg-BG_GRAY rounded-2xl mr-4"
           >
@@ -35,7 +53,7 @@ const Courses: FC<ICoursesProps> = ({ courses }) => {
                 <Text className="text-lg">{item.content.length} Chapters</Text>
               </View>
             </View>
-          </View>
+          </Pressable>
         )}
       />
     </View>
