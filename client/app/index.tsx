@@ -18,7 +18,7 @@ export default function Index() {
       className="flex-1 "
       edges={["top", "left", "right", "bottom"]}
     >
-      <View className="flex-1 items-center justify-center ">
+      <View className="flex-1 items-center justify-center">
         <Image
           source={require("./../assets/images/landing.jpg")}
           className="w-full h-full"

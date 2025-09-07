@@ -18,7 +18,7 @@ const Intro: FC<IntroProps> = ({ course }) => {
   const router = useRouter();
 
   const handleGoBack = () => {
-    router.back();
+    router.replace("/(tabs)/home");
   };
 
   return (

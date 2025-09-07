@@ -9,6 +9,7 @@ module.exports = {
         PRIMARY: '#0075ff',
         GRAY: '#858585',
         BG_GRAY: '#d3d3d3',
+        BLACK: "#000000",
       },
     },
   },

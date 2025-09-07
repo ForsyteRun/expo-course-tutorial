@@ -22,8 +22,8 @@ const Courses: FC<ICoursesProps> = ({ courses }) => {
 
   const handlePress = (course: ICourse) => {
     router.push({
-      pathname: "/course",
-      params: { course: JSON.stringify(course) },
+      pathname: "/courses/[id]",
+      params: { id: course.id },
     });
   };
 

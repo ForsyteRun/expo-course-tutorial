@@ -7,6 +7,7 @@ import Intro from "./Intro";
 interface CourseProps {
   course: ICourse;
 }
+
 const Course: FC<CourseProps> = ({ course }) => {
   return (
     <SafeAreaView>
@@ -16,7 +17,7 @@ const Course: FC<CourseProps> = ({ course }) => {
         ListHeaderComponent={
           <View className="flex gap-6">
             <Intro course={course} />
-            <Chapters chapters={course.content} />
+            <Chapters course={course} courseId={course.id} />
           </View>
         }
       />

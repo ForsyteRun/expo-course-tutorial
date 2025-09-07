@@ -1,11 +1,20 @@
 export interface ICourse {
+  id: string;
   title: string;
   image: string;
   description: string;
-  content: IChapters[];
+  content: IChapter[];
+  completedChapters: string[];
 }
 
-export interface IChapters {
+export interface IChapter {
   title: string;
-  content: string[];
+  content: IChaptersContent[];
+}
+
+export interface IChaptersContent {
+  code: string;
+  example: string;
+  topic: string;
+  explain: string;
 }
