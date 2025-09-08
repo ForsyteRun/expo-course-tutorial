@@ -1,13 +1,18 @@
 import { View, Text, FlatList, Image, Dimensions } from "react-native";
-import React, { FC } from "react";
-import { ICourse } from "@/types/course.interface";
+import { FC, memo } from "react";
+import type { ICourse } from "@/types/course.interface";
 import { IMAGES } from "@/constants/images";
 import * as Progress from "react-native-progress";
+
 interface ICourseProgressProps {
   courses: ICourse[];
 }
 
-const CourseProgress: FC<ICourseProgressProps> = ({ courses }) => {
+const CourseProgress: FC<ICourseProgressProps> = memo(({ courses }) => {
+  const handleProgress = (course: ICourse) => {
+    return course?.completedChapters?.length / course.content.length;
+  };
+
   return (
     <View className="px-4 mb-5">
       <Text className="text-2xl font-[Roboto-Black] mb-5">Progress</Text>
@@ -30,9 +35,10 @@ const CourseProgress: FC<ICourseProgressProps> = ({ courses }) => {
                   </View>
                 </View>
                 <View>
-                  <Progress.Bar progress={0} width={200} />
+                  <Progress.Bar progress={handleProgress(item)} width={200} />
                   <Text className="text-sm opacity-50 mt-1">
-                    0 chapters comleted of {item.content.length}
+                    {item?.completedChapters?.length || 0} chapters comleted of{" "}
+                    {item.content.length}
                   </Text>
                 </View>
               </View>
@@ -42,6 +48,6 @@ const CourseProgress: FC<ICourseProgressProps> = ({ courses }) => {
       </View>
     </View>
   );
-};
+});
 
 export default CourseProgress;

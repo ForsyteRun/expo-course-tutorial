@@ -11,13 +11,13 @@ import {
   Text,
   View,
 } from "react-native";
+
 interface ICoursesProps {
   courses: ICourse[];
 }
 
 const Courses: FC<ICoursesProps> = ({ courses }) => {
   const screenWidth = Dimensions.get("window").width;
-
   const router = useRouter();
 
   const handlePress = (course: ICourse) => {

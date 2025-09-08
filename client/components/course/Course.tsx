@@ -3,11 +3,9 @@ import { FC } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import Chapters from "./Chapters";
 import Intro from "./Intro";
-
 interface CourseProps {
   course: ICourse;
 }
-
 const Course: FC<CourseProps> = ({ course }) => {
   return (
     <SafeAreaView>

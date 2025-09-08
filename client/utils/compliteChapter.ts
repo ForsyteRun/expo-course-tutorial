@@ -14,7 +14,9 @@ export const compliteChapter = async (courseId: string, chapterId: string) => {
       if (!course) return;
 
       if (course.completedChapters?.length) {
-        course.completedChapters.push(chapterId);
+        course.completedChapters = Array.from(
+          new Set([...course.completedChapters, chapterId])
+        );
       } else {
         course.completedChapters = [chapterId];
       }

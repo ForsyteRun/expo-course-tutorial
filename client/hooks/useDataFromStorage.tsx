@@ -1,20 +1,25 @@
 import type { ICourse } from "@/types/course.interface";
 import { StorageEnum } from "@/types/storage.enum";
 import { getItemFromStorage } from "@/utils/getItemFormStorage";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 export const useDataFromStorage = () => {
   const [courses, setCourses] = useState<ICourse[] | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const getDataFromStorage = async () => {
+  const getDataFromStorage = async () => {
+    try {
+      setLoading(true);
       const data = await getItemFromStorage<ICourse[]>(StorageEnum.COURSES);
-
       setCourses(data);
-    };
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useLayoutEffect(() => {
     getDataFromStorage();
   }, []);
 
-  return { courses };
+  return { courses, loading, getDataFromStorage };
 };

@@ -1,29 +1,21 @@
 import Course from "@/components/course/Course";
-import type { ICourse } from "@/types/course.interface";
-import { StorageEnum } from "@/types/storage.enum";
-import { getItemFromStorage } from "@/utils/getItemFormStorage";
+import { useDataFromStorage } from "@/hooks/useDataFromStorage";
 import { useLocalSearchParams } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { ActivityIndicator } from "react-native";
 
 const CourseScreen = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const [course, setCourse] = useState<ICourse | null>(null);
+  const { courses } = useDataFromStorage();
 
-  useEffect(() => {
-    const getItems = async () => {
-      const courses = await getItemFromStorage<ICourse[]>(StorageEnum.COURSES);
+  const course = courses?.find((item) => item.id === id);
 
-      const isExistingCourse = courses?.find((item) => item.id === id);
+  if (!course) return;
 
-      if (isExistingCourse) {
-        setCourse(isExistingCourse);
-      }
-    };
-
-    getItems();
-  }, []);
-
-  return course && <Course course={course} />;
+  return course ? (
+    <Course course={course} />
+  ) : (
+    <ActivityIndicator size={"large"} color={"red"} />
+  );
 };
 
 export default CourseScreen;

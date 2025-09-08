@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import type { IChapter } from "@/types/course.interface";
-import { compliteChapter } from "@/utils/compiteChapter";
+import { compliteChapter } from "@/utils/compliteChapter";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Dimensions, Text, View } from "react-native";
