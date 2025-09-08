@@ -1,7 +1,17 @@
-import { PRACTICE_OPTIONS } from "@/constants/images";
-import { View, Text, FlatList, Image } from "react-native";
+import { PRACTICE_OPTIONS, PracticeName } from "@/constants/images";
+import { useRouter } from "expo-router";
+import { View, Text, FlatList, Image, Pressable } from "react-native";
 
 const CourseOptions = () => {
+  const router = useRouter();
+
+  const handlePress = (name: PracticeName) => {
+    router.push({
+      pathname: "/practice/[type]",
+      params: { type: name },
+    });
+  };
+
   return (
     <View className="px-4">
       <Text className="text-2xl font-[Roboto-Black] mb-5">CourseOptions</Text>
@@ -12,12 +22,15 @@ const CourseOptions = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => {
           return (
-            <View className="mr-4 mb-5">
+            <Pressable
+              className="mr-4 mb-5"
+              onPress={() => handlePress(item.name)}
+            >
               <Image
                 source={item.image}
                 className="w-[150px] h-[150px] rounded-xl"
               />
-            </View>
+            </Pressable>
           );
         }}
       />

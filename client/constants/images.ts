@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native";
+
 export const IMAGES = {
   "1": require("@/assets/images/courses/1.webp"),
   "2": require("@/assets/images/courses/2.webp"),
@@ -8,7 +10,7 @@ export const IMAGES = {
   "7": require("@/assets/images/courses/7.webp"),
 };
 
-export const PRACTICE_OPTIONS = [
+export const PRACTICE_OPTIONS: IPicticeOption[] = [
   {
     name: "Quiz",
     image: require("@/assets/images/courses/11.jpg"),
@@ -22,3 +24,10 @@ export const PRACTICE_OPTIONS = [
     image: require("@/assets/images/courses/33.jpg"),
   },
 ];
+
+export type PracticeName = "Quiz" | "Flashcards" | "Question & ans";
+
+export interface IPicticeOption {
+  name: PracticeName;
+  image: ImageSourcePropType;
+}
