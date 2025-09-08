@@ -11,7 +11,7 @@ const Practice = () => {
   if (!option) return;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1">
       <PracticeView option={option} />
     </SafeAreaView>
   );

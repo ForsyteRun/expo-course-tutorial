@@ -14,14 +14,17 @@ export const PRACTICE_OPTIONS: IPricticeOption[] = [
   {
     name: "Quiz",
     image: require("@/assets/images/courses/11.jpg"),
+    icon: require("@/assets/images/quiz.png"),
   },
   {
     name: "Flashcards",
     image: require("@/assets/images/courses/22.jpg"),
+    icon: require("@/assets/images/flash-card.png"),
   },
   {
     name: "Question & ans",
     image: require("@/assets/images/courses/33.jpg"),
+    icon: require("@/assets/images/qa.png"),
   },
 ];
 
@@ -30,4 +33,5 @@ export type PracticeName = "Quiz" | "Flashcards" | "Question & ans";
 export interface IPricticeOption {
   name: PracticeName;
   image: ImageSourcePropType;
+  icon: ImageSourcePropType;
 }

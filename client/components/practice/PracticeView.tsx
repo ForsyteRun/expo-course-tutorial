@@ -1,8 +1,9 @@
-import { View, Text, Pressable, Image } from "react-native";
-import React, { FC } from "react";
-import { useRouter } from "expo-router";
+import type { IPricticeOption } from "@/constants/images";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { IPricticeOption } from "@/constants/images";
+import { useRouter } from "expo-router";
+import { FC } from "react";
+import { Image, Pressable, View } from "react-native";
+import PracticeList from "./PracticeList";
 
 interface IPracticeOptionProps {
   option: IPricticeOption;
@@ -16,7 +17,7 @@ const PracticeView: FC<IPracticeOptionProps> = ({ option }) => {
   };
 
   return (
-    <View>
+    <View className="flex-1">
       <View className="relative">
         <Pressable
           onPress={handleGoBack}
@@ -26,7 +27,7 @@ const PracticeView: FC<IPracticeOptionProps> = ({ option }) => {
         </Pressable>
         <Image source={option.image} className="w-full h-[200px]" />
       </View>
-      <Text>{option.name}</Text>
+      <PracticeList icon={option.icon} />
     </View>
   );
 };
