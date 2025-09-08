@@ -10,7 +10,7 @@ export const IMAGES = {
   "7": require("@/assets/images/courses/7.webp"),
 };
 
-export const PRACTICE_OPTIONS: IPicticeOption[] = [
+export const PRACTICE_OPTIONS: IPricticeOption[] = [
   {
     name: "Quiz",
     image: require("@/assets/images/courses/11.jpg"),
@@ -27,7 +27,7 @@ export const PRACTICE_OPTIONS: IPicticeOption[] = [
 
 export type PracticeName = "Quiz" | "Flashcards" | "Question & ans";
 
-export interface IPicticeOption {
+export interface IPricticeOption {
   name: PracticeName;
   image: ImageSourcePropType;
 }
