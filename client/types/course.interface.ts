@@ -5,6 +5,9 @@ export interface ICourse {
   description: string;
   content: IChapter[];
   completedChapters: string[];
+  quiz: IQuiz[];
+  complitedQuizes?: ISelectedQuizOptions[];
+  isQuizComplited?: boolean;
 }
 
 export interface IChapter {
@@ -17,4 +20,15 @@ export interface IChaptersContent {
   example: string;
   topic: string;
   explain: string;
+}
+
+export interface IQuiz {
+  question: string;
+  "corect-answer": string;
+  options: string[];
+}
+
+export interface ISelectedQuizOptions extends IQuiz {
+  selected: string;
+  isCorrect: boolean;
 }

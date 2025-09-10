@@ -27,7 +27,7 @@ const PracticeView: FC<IPracticeOptionProps> = ({ option }) => {
         </Pressable>
         <Image source={option.image} className="w-full h-[200px]" />
       </View>
-      <PracticeList icon={option.icon} />
+      <PracticeList icon={option.icon} name={option.name} />
     </View>
   );
 };

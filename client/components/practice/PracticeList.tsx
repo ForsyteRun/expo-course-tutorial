@@ -5,16 +5,45 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
+  Pressable,
 } from "react-native";
-import React, { FC } from "react";
+import { FC } from "react";
 import { useDataFromStorage } from "@/hooks/useDataFromStorage";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import type { ICourse } from "@/types/course.interface";
+import { useRouter } from "expo-router";
+import { PracticeName } from "@/constants/images";
 interface IPracticeListProps {
   icon: ImageSourcePropType;
+  name: PracticeName;
 }
 
-const PracticeList: FC<IPracticeListProps> = ({ icon }) => {
+const PracticeList: FC<IPracticeListProps> = ({ icon, name }) => {
   const { courses, loading } = useDataFromStorage();
+  const router = useRouter();
+
+  const handleQuizTopic = (course: ICourse) => {
+    if (name === "Quiz") {
+      router.push({
+        pathname: "/practice/(data)/quiz",
+        params: { course: JSON.stringify(course) },
+      });
+    }
+
+    if (name === "Flashcards") {
+      router.push({
+        pathname: "/practice/(data)/flashcards",
+        params: { data: JSON.stringify(course) },
+      });
+    }
+
+    if (name === "Question & ans") {
+      router.push({
+        pathname: "/practice/(data)/qa",
+        params: { data: JSON.stringify(course) },
+      });
+    }
+  };
 
   return (
     <View className="flex-1 bg-BG_GRAY">
@@ -27,16 +56,21 @@ const PracticeList: FC<IPracticeListProps> = ({ icon }) => {
           keyExtractor={(_, index) => index.toString()}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
-            <View className="w-[48%] relative items-center bg-WHITE m-1 p-4 rounded-2xl">
-              <AntDesign
-                name="checkcircle"
-                size={18}
-                color="#999"
-                className="absolute top-2 right-2"
-              />
+            <Pressable
+              onPress={() => handleQuizTopic(item)}
+              className="w-[48%] relative items-center bg-WHITE m-1 p-4 rounded-2xl"
+            >
+              {name === "Quiz" && item.isQuizComplited && (
+                <AntDesign
+                  name="checkcircle"
+                  size={18}
+                  color="green"
+                  className="absolute top-2 right-2"
+                />
+              )}
               <Image source={icon} className="w-20 h-20" />
               <Text className="text-[14px] text-center">{item.title}</Text>
-            </View>
+            </Pressable>
           )}
           contentContainerStyle={{
             padding: 10,
