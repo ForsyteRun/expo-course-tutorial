@@ -15,23 +15,32 @@ export const PRACTICE_OPTIONS: IPricticeOption[] = [
     name: "Quiz",
     image: require("@/assets/images/courses/11.jpg"),
     icon: require("@/assets/images/quiz.png"),
+    path: "/practice/(data)/quiz",
   },
   {
     name: "Flashcards",
     image: require("@/assets/images/courses/22.jpg"),
     icon: require("@/assets/images/flash-card.png"),
+    path: "/practice/(data)/flashcards",
   },
   {
     name: "Question & ans",
     image: require("@/assets/images/courses/33.jpg"),
     icon: require("@/assets/images/qa.png"),
+    path: "/practice/(data)/qa",
   },
 ];
 
 export type PracticeName = "Quiz" | "Flashcards" | "Question & ans";
 
+export type PracticePath =
+  | "/practice/(data)/quiz"
+  | "/practice/(data)/flashcards"
+  | "/practice/(data)/qa";
+
 export interface IPricticeOption {
   name: PracticeName;
   image: ImageSourcePropType;
   icon: ImageSourcePropType;
+  path: PracticePath;
 }

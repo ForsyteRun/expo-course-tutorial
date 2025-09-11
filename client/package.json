@@ -41,6 +41,7 @@
     "react-dom": "19.0.0",
     "react-hook-form": "^7.62.0",
     "react-native": "0.79.5",
+    "react-native-flip-card": "^3.5.7",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-progress": "^5.0.1",
     "react-native-reanimated": "~3.17.4",
@@ -56,6 +57,7 @@
     "@react-native-community/cli": "^20.0.1",
     "@types/node": "^24.3.0",
     "@types/react": "~19.0.10",
+    "@types/react-native-flip-card": "^3.5.7",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
     "typescript": "~5.8.3"

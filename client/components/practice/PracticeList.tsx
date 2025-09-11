@@ -12,35 +12,36 @@ import { useDataFromStorage } from "@/hooks/useDataFromStorage";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import type { ICourse } from "@/types/course.interface";
 import { useRouter } from "expo-router";
-import { PracticeName } from "@/constants/images";
+import { PRACTICE_OPTIONS, PracticeName } from "@/constants/images";
 interface IPracticeListProps {
   icon: ImageSourcePropType;
   name: PracticeName;
+  path: (typeof PRACTICE_OPTIONS)[number]["path"];
 }
 
-const PracticeList: FC<IPracticeListProps> = ({ icon, name }) => {
+const PracticeList: FC<IPracticeListProps> = ({ icon, name, path }) => {
   const { courses, loading } = useDataFromStorage();
   const router = useRouter();
 
   const handleQuizTopic = (course: ICourse) => {
     if (name === "Quiz") {
       router.push({
-        pathname: "/practice/(data)/quiz",
+        pathname: path,
         params: { course: JSON.stringify(course) },
       });
     }
 
     if (name === "Flashcards") {
       router.push({
-        pathname: "/practice/(data)/flashcards",
-        params: { data: JSON.stringify(course) },
+        pathname: path,
+        params: { course: JSON.stringify(course) },
       });
     }
 
     if (name === "Question & ans") {
       router.push({
-        pathname: "/practice/(data)/qa",
-        params: { data: JSON.stringify(course) },
+        pathname: path,
+        params: { course: JSON.stringify(course) },
       });
     }
   };

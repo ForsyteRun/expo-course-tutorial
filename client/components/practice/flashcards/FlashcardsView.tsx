@@ -1,30 +1,35 @@
 import type { ICourse } from "@/types/course.interface";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
-import { FC } from "react";
-import { View, Text, Dimensions } from "react-native";
+import { FC, useState } from "react";
+import { Dimensions, Image, Text, View } from "react-native";
 import * as Progress from "react-native-progress";
+import Cards from "./Cards";
 
-interface IQuizHeaderProps {
-  count: number;
-  index: number;
+interface IFlashcardsViewProps {
+  data: ICourse;
 }
 
-const QuizHeader: FC<IQuizHeaderProps> = ({ count, index }) => {
+const FlashcardsView: FC<IFlashcardsViewProps> = ({ data }) => {
   const router = useRouter();
+  const width = Dimensions.get("screen").width;
 
-  const screenWidth = Dimensions.get("screen").width;
+  const [currentPage, setCurrentPage] = useState(0);
 
   const handleGoBack = () => {
     router.back();
   };
 
   const getProgress = () => {
-    return index / count;
+    return currentPage / data.flashcards.length;
   };
 
   return (
     <View className="px-4">
+      <Image
+        source={require("@/assets/images/wave.png")}
+        className="absolute"
+      />
       <View className="flex-row items-center justify-between mt-4">
         <Ionicons
           onPress={handleGoBack}
@@ -33,17 +38,18 @@ const QuizHeader: FC<IQuizHeaderProps> = ({ count, index }) => {
           color="#fff"
         />
         <Text className="text-WHITE">
-          {index} of {count}
+          {currentPage + 1} of {data.flashcards.length}
         </Text>
       </View>
       <Progress.Bar
         progress={getProgress()}
-        width={screenWidth * 0.91}
+        width={width * 0.91}
         className="mt-2"
         color="#fff"
       />
+      <Cards data={data} setCurrentPage={setCurrentPage} />
     </View>
   );
 };
 
-export default QuizHeader;
+export default FlashcardsView;
