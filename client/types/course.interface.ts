@@ -9,6 +9,7 @@ export interface ICourse {
   complitedQuizes?: ISelectedQuizOptions[];
   isQuizComplited?: boolean;
   flashcards: IFlashCard[];
+  questions: IQuestionsAnswers[];
 }
 
 export interface IChapter {
@@ -37,4 +38,9 @@ export interface ISelectedQuizOptions extends IQuiz {
 export interface IFlashCard {
   question: string;
   "corect-answer": string;
+}
+
+export interface IQuestionsAnswers {
+  question: string;
+  answer: string;
 }
