@@ -6,13 +6,20 @@ import NoCourse from "@/components/home/NoCourse";
 import { useDataFromStorage } from "@/hooks/useDataFromStorage";
 import React from "react";
 import { ActivityIndicator, FlatList, Image, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 export default function Home() {
   const { courses, loading, getDataFromStorage } = useDataFromStorage();
+  const { bottom } = useSafeAreaInsets();
 
   return (
-    <SafeAreaView className="flex-1 bg-WHITE">
+    <SafeAreaView
+      className="flex-1 h-full inset-0bg-WHITE"
+      edges={["top", "left", "right"]}
+    >
       <Image
         source={require("@/assets/images/wave.png")}
         className="absolute"
@@ -22,6 +29,7 @@ export default function Home() {
         <FlatList
           onRefresh={getDataFromStorage}
           refreshing={loading}
+          contentContainerStyle={{ paddingBottom: bottom }}
           data={[]}
           ListHeaderComponent={
             <View>
